@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Sipariş Özeti</h5>
+      
+      <div class="d-flex justify-content-between mb-2">
+        <span>Toplam Ürün:</span>
+        <span>{{totalItems}}</span>
+      </div>
+      
+      <div class="d-flex justify-content-between mb-2">
+        <span>Ara Toplam:</span>
+        <span>{{subtotal | currency:'TRY':'symbol-narrow'}}</span>
+      </div>
+      
+      <div class="d-flex justify-content-between mb-2">
+        <span>KDV (%20):</span>
+        <span>{{vat | currency:'TRY':'symbol-narrow'}}</span>
+      </div>
+      
+      <div class="d-flex justify-content-between fw-bold">
+        <span>Genel Toplam:</span>
+        <span>{{total | currency:'TRY':'symbol-narrow'}}</span>
+      </div>
+    </div>
+  </div>

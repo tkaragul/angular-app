@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <img [src]="product?.imageUrl" class="img-fluid" [alt]="product?.name">
+      </div>
+      <div class="col-md-6">
+        <h2>{{product?.name}}</h2>
+        <p class="lead">{{product?.price | currency:'TRY':'symbol-narrow'}}</p>
+        <p>Kategori: {{product?.category}}</p>
+        <p>{{product?.detail}}</p>
+        
+        <div class="mb-3">
+          <label class="form-label">Adet</label>
+          <input type="number" class="form-control" [(ngModel)]="quantity" min="1">
+        </div>
+        
+        <button class="btn btn-primary" (click)="addToCart()">Sepete Ekle</button>
+      </div>
+    </div>
+  </div>
+  

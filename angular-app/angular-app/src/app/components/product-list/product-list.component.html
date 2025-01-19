@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- Filtreler -->
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Filtreler</h5>
+            
+            <div class="mb-3">
+              <label class="form-label">Kategori</label>
+              <select class="form-select" [(ngModel)]="selectedCategory" (change)="loadCategories()">
+                <option value="">Tümü</option>
+                <option *ngFor="let category of categories" [value]="category.id">
+                  {{category.name}}
+                </option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Minimum Fiyat</label>
+              <input type="number" class="form-control" [(ngModel)]="minPrice" (change)="loadProducts()">
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label">Maksimum Fiyat</label>
+              <input type="number" class="form-control" [(ngModel)]="maxPrice" (change)="loadProducts()">
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Ürün Listesi -->
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let product of products">
+            <div class="card">
+              <img [src]="product.imageUrl" class="card-img-top" [alt]="product.name">
+              <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <p class="card-text">{{product.price | currency:'TRY':'symbol-narrow'}}</p>
+                <a [routerLink]="['/product', product.id]" class="btn btn-primary me-2">Detay</a>
+                <button class="btn btn-success" (click)="addToCart(product)">Sepete Ekle</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Sayfalama -->
+        <ngb-pagination
+          [collectionSize]="30"
+          [(page)]="currentPage"
+          [pageSize]="limit"
+          (pageChange)="loadProducts()"
+        ></ngb-pagination>
+      </div>
+  
+      <!-- Mini Sepet -->
+      <div class="col-md-3">
+        <app-mini-cart></app-mini-cart>
+      </div>
+    </div>
+  </div>
